@@ -3,7 +3,6 @@
   "name": "grunt-css-condense",
   "version": "0.0.0",
   "dependencies": {
-    "grunt-lib-contrib": "0.5.x",
     "css-condense": "0.0.x"
   },
   "devDependencies": {

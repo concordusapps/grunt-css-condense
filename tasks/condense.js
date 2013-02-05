@@ -4,7 +4,7 @@ module.exports = function(grunt){
   'use strict';
 
   var path = require('path');
-  var _ = grunt.util._;
+  var condense = require('css-condense');
 
   grunt.registerMultiTask('condense', 'Condense your CSS', function() {
 
@@ -30,7 +30,8 @@ module.exports = function(grunt){
       }).map(function(filepath) {
 
         // Actually condense a file
-        return condense(filepath, options);
+        debugger;
+        return condense.compress(grunt.file.read(filepath), options);
 
       // Normalize CRLF
       }).join(grunt.util.normalizelf(options.separator));
@@ -46,9 +47,8 @@ module.exports = function(grunt){
     });
   });
 
-  var condense = function(file, options) {
-    grunt.log.write('Condensing');
-    grunt.log.writeln(arguments);
-  };
+  // var condense = function(file, options) {
+  //   return condense(file)
+  // };
 
 };
