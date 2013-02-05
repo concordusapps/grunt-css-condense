@@ -1,0 +1,14 @@
+{
+  "Author": "Erich Healy",
+  "name": "grunt-css-condense",
+  "version": "0.0.0",
+  "dependencies": {
+    "grunt-lib-contrib": "0.5.x",
+    "css-condense": "0.0.x"
+  },
+  "devDependencies": {
+    "grunt": "0.4.0rc7",
+    "grunt-contrib-clean": "0.4.0rc6",
+    "grunt-contrib-internal": "*"
+  }
+}
