@@ -1,19 +1,20 @@
 // 'use strict';
 
 module.exports = function(grunt) {
+  'use strict';
 
   // Project configuration.
   grunt.initConfig({
-    // jshint: {
-    //   all: [
-    //     'Gruntfile.js',
-    //     'tasks/*.js',
-    //     '<%= nodeunit.tests %>'
-    //   ],
-    //   options: {
-    //     jshintrc: '.jshintrc'
-    //   }
-    // },
+    jshint: {
+      all: [
+        'Gruntfile.js',
+        'tasks/*.js',
+        '<%= nodeunit.tests %>'
+      ],
+      options: {
+        jshintrc: '.jshintrc'
+      }
+    },
 
     // Before generating any new files, remove any previously-created files.
     clean: {
@@ -26,48 +27,41 @@ module.exports = function(grunt) {
       },
       compress: {
         files: {
-          'tmp/compressed.css': ['tasks/test/fixtures/test1.css']
+          'tmp/compressed.css': ['test/fixtures/test1.css'],
+          'tmp/concat.css': [
+            'test/fixtures/test1.css',
+            'test/fixtures/test2.css'
+          ]
         }
       }
+    },
+
+    // Unit tests.
+    nodeunit: {
+      tests: ['test/*_test.js']
     }
-
-    // // Configuration to be run (and then tested).
-    // coffee: {
-    //   options: {
-    //     bare: true
-    //   },
-    //   compile: {
-    //     files: {
-    //       'tmp/coffee.js': ['test/fixtures/coffee1.coffee'],
-    //       'tmp/concat.js': ['test/fixtures/coffee1.coffee', 'test/fixtures/coffee2.coffee']
-    //     }
-    //   }
-    // },
-
-    // // Unit tests.
-    // nodeunit: {
-    //   tests: ['test/*_test.js']
-    // }
   });
 
   // Actually load this plugin's task(s).
   grunt.loadTasks('tasks');
 
   // These plugins provide necessary tasks.
-  // grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-clean');
-  // grunt.loadNpmTasks('grunt-contrib-nodeunit');
-  grunt.loadNpmTasks('grunt-contrib-internal');
+  grunt.loadNpmTasks('grunt-contrib-nodeunit');
 
   // Whenever the "test" task is run, first clean the "tmp" dir, then run this
   // plugin's task(s), then test the result.
-  // grunt.registerTask('test', ['clean', 'coffee', 'nodeunit']);
+  grunt.registerTask('test', [
+    'clean',
+    'condense',
+    'nodeunit'
+  ]);
 
   // By default, lint and run all tests.
-  // grunt.registerTask('default', ['jshint', 'test', 'build-contrib']);
-
   grunt.registerTask('default', [
-    'condense'
+    'jshint',
+    'test'
   ]);
 
 };
