@@ -1,7 +1,7 @@
 {
   "name": "grunt-css-condense",
   "description": "Condense your CSS.",
-  "version": "0.1.0",
+  "version": "0.0.0",
   "homepage": "https://github.com/CactusCommander/grunt-css-condense",
   "author": {
     "name": "Erich Healy"

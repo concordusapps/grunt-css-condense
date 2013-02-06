@@ -82,7 +82,7 @@ condense: {
 
 ## Release History
 
- * 2013-02-04   v0.1.0   Initial release.
+ * TBA   v0.1.0   Initial release.
 
 ---
 
