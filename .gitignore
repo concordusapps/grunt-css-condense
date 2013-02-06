@@ -1,16 +1,8 @@
-lib-cov
-*.seed
-*.log
-*.csv
-*.dat
-*.out
-*.pid
-*.gz
-
-pids
-logs
-results
-
+# For when npm barfs
 npm-debug.log
 
+# Npm's modules
 node_modules
+
+# The build folder
+tmp/
