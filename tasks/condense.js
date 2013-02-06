@@ -24,7 +24,7 @@ module.exports = function(grunt){
         }
       }).map(function(filepath) {
 
-        // Read all the files and concatinate them
+        // Turn each file entry into is file contents
         return grunt.file.read(filepath);
 
       // Join all the css files
