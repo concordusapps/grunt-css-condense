@@ -1,23 +1,18 @@
-
-
 module.exports = function(grunt){
   'use strict';
 
-  var path = require('path');
   var condense = require('css-condense');
 
   grunt.registerMultiTask('condense', 'Condense your CSS', function() {
 
     // Get some defaults for our options
-    var options = this.options({
-      separator: grunt.util.linefeed
-    });
+    var options = this.options();
 
     // Write out the options that we got if we got any options
     grunt.verbose.writeflags(options, 'Options');
 
     this.files.forEach(function(file) {
-      var output = file.src.filter(function(filepath) {
+      var input = file.src.filter(function(filepath) {
 
         // Warn on and remove invalid source files (if nonull was set).
         if (!grunt.file.exists(filepath)) {
@@ -29,14 +24,14 @@ module.exports = function(grunt){
         }
       }).map(function(filepath) {
 
-        // Actually condense a file
-        debugger;
-        return condense.compress(grunt.file.read(filepath), options);
+        // Read all the files and concatinate them
+        return grunt.file.read(filepath);
 
-      // Normalize CRLF
-      }).join(grunt.util.normalizelf(options.separator));
+      // Join all the css files
+      }).join(grunt.util.linefeed);
 
-      // debugger;
+      // Compress the css
+      var output = condense.compress(input, options);
 
       if (output.length < 1) {
         grunt.log.warn('Destination not written because compiled files were empty.');
@@ -46,9 +41,5 @@ module.exports = function(grunt){
       }
     });
   });
-
-  // var condense = function(file, options) {
-  //   return condense(file)
-  // };
 
 };
